@@ -1,3 +1,4 @@
+# encoding: utf-8
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 puts "RinRuby #{RinRuby::VERSION} specification"
 
@@ -101,6 +102,11 @@ describe RinRuby do
     it "should pull a String" do
       R.eval("x<-'Value'")
       R.pull('x').should=='Value'
+    end
+
+    it 'should pull a String with unicode characters' do
+      R.eval("text <- 'zkouška'")
+      R.pull('text').should=="zkouška"
     end
     it "should pull an Integer" do
       R.eval("x<-1")

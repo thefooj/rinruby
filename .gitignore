@@ -1,3 +1,6 @@
+.bundle
+.rvmrc
+.idea
 pkg
 doc
 *~

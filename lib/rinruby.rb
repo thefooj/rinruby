@@ -583,7 +583,7 @@ def initialize(*args)
       writeBin(var,#{RinRuby_Socket},endian="big")
     } else if ( is.character(var) && ( length(var) == 1 ) ) {
       writeBin(as.integer(#{RinRuby_Type_String}),#{RinRuby_Socket},endian="big")
-      writeBin(as.integer(nchar(var)),#{RinRuby_Socket},endian="big")
+      writeBin(as.integer(nchar(var,type='bytes')),#{RinRuby_Socket},endian="big")
       writeBin(var,#{RinRuby_Socket},endian="big")
     } else if ( is.character(var) && ( length(var) > 1 ) ) {
       writeBin(as.integer(#{RinRuby_Type_String_Array}),#{RinRuby_Socket},endian="big")
@@ -697,7 +697,6 @@ def initialize(*args)
       @socket.read(length,buffer)
       result = buffer.dup
       @socket.read(1,buffer)    # zero-terminated string
-      result
     elsif ( type == RinRuby_Type_String_Array )
       result = Array.new(length,'')
       for index in 0...length
